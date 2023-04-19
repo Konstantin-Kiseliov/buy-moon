@@ -1,15 +1,8 @@
 from aiogram import Bot, Dispatcher, executor, types
 
-from aiogram.contrib.fsm_storage.memory import (
-    MemoryStorage,
-)  # импорт класса хранения локальных данных, введённых пользователем
-from aiogram.dispatcher.filters.state import (
-    StatesGroup,
-    State,
-)  # импорт объектов состояний
-from aiogram.dispatcher import (
-    FSMContext,
-)  # импорт класса, отвечающего за машинное состояние
+from aiogram.contrib.fsm_storage.memory import MemoryStorage  # импорт класса хранения локальных данных пользователя
+from aiogram.dispatcher.filters.state import StatesGroup, State  # импорт объектов состояний
+from aiogram.dispatcher import FSMContext  # импорт класса, отвечающего за машинное состояние
 
 from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
@@ -18,9 +11,7 @@ import re  # импорт модуля регулярных выражений
 
 from config import TOKEN_API
 
-storage = (
-    MemoryStorage()
-)  # создание хранилища (экземпляра класса MemoryStorage) локальных данных, введённых пользователем
+storage = (MemoryStorage())  # создание хранилища (экземпляра класса MemoryStorage) локальных данных пользователя
 bot = Bot(TOKEN_API)
 dp = Dispatcher(bot=bot, storage=storage)
 
@@ -30,7 +21,15 @@ class ProfileStatesGroup(StatesGroup):
     date_of_birth = State()
 
 
-START_MESSAGE = "Здравствуйте"
+START_MESSAGE = """Здравствуйте, я бот, с помощью которого у вас получится играть в <b>"Buy Moon!"</b>.
+Вы сможете:
+✔️зарабатывать лунные деньги,
+✔️покупать на них реальные участки на Луне,
+✔️соревноваться с другими игроками за влияние на естесственном спутнике Земли
+✔️и многое другое.
+Но для начала необходимо пройти короткую регистрацию в игре. 
+<b>Зарегестрироваться?</b>
+"""
 
 
 def get_start_ikb() -> InlineKeyboardMarkup:
