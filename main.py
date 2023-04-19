@@ -59,7 +59,7 @@ async def on_startup(_):
 
 @dp.message_handler(commands=["start"])
 async def send_start_message(message: types.Message) -> None:
-    await message.answer(START_MESSAGE, parse_mode="HTML", reply_markup=get_start_ikb())
+    await message.answer(START_MESSAGE, parse_mode="html", reply_markup=get_start_ikb())
 
 
 @dp.callback_query_handler()
